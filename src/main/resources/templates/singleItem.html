@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Single Item</title>
+</head>
+<body>
+<a href="/items">Back</a>
+<h2 th:text="${item.title}"></h2>
+<p th:text="${item.description}"></p>
+<span th:if="${item.category != null}" th:text="${item.category.name}"></span>
+</body>
+</html>
