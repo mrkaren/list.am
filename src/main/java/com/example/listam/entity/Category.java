@@ -16,6 +16,6 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
+    @Column(columnDefinition = "varchar(50)")
     private String name;
 }
