@@ -6,8 +6,10 @@ import com.example.listam.entity.Item;
 import com.example.listam.repository.CategoryRepository;
 import com.example.listam.repository.CommentRepository;
 import com.example.listam.repository.ItemRepository;
+import com.example.listam.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,13 +70,17 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    public String itemsAdd(@ModelAttribute Item item, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String itemsAdd(@ModelAttribute Item item,
+                           @RequestParam("image") MultipartFile multipartFile,
+                           @AuthenticationPrincipal CurrentUser currentUser
+                           ) throws IOException {
         if (multipartFile != null && !multipartFile.isEmpty()) {
             String fileName = System.nanoTime() + "_" + multipartFile.getOriginalFilename();
             File file = new File(imageUploadPath + fileName);
             multipartFile.transferTo(file);
             item.setImgName(fileName);
         }
+        item.setUser(currentUser.getUser());
         itemRepository.save(item);
         return "redirect:/items";
     }
@@ -86,8 +92,10 @@ public class ItemController {
     }
 
     @PostMapping("/comment/add")
-    public String addComment(@ModelAttribute Comment comment) {
+    public String addComment(@ModelAttribute Comment comment,
+                             @AuthenticationPrincipal CurrentUser currentUser) {
         comment.setCommentDate(new Date());
+        comment.setUser(currentUser.getUser());
         commentRepository.save(comment);
         return "redirect:/items/" + comment.getItem().getId();
     }

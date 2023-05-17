@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div th:if="${user != null}">Welcome <b th:text="${user.name}"></b> <br>
+    <a href="/logout"> Logout</a>
+</div>
 <a href="/categories"> Categories Page</a> <br>
 <a href="/items"> Items Page</a>
+<a href="/user/register" th:if="${user == null}">Register</a>
+<a href="/login" th:if="${user == null}">Login</a>
 </body>
 </html>

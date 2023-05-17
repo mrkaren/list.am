@@ -27,4 +27,8 @@ public class Comment {
 
     @Column(name = "comment")
     private String commentText;
+
+    @ManyToOne
+    private User user;
+
 }

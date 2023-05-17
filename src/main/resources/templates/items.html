@@ -11,11 +11,13 @@
     <tr>
         <th>id</th>
         <th>title</th>
+        <th>author</th>
         <th>action</th>
     </tr>
 <tr th:each="item : ${items}">
     <td th:text="${item.id}"></td>
     <td><a th:href="@{'/items/' + ${item.id}}"> <span th:text="${item.title}"></span></a></td>
+    <td th:text="${item.user.name}"></td>
     <td><a th:href="@{/items/remove(id=${item.id})}">Remove</a></td>
 </tr>
 </table>

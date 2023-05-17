@@ -18,6 +18,7 @@
 </form>
 <div th:each="comment : ${comments}">
    Comment: <span th:text="${comment.commentText}"></span> <br>
+    Comment Author: <span th:text="${comment.user.name}"></span>
    Date: <span th:text="${comment.commentDate}"></span>
 </div>
 </body>
