@@ -5,9 +5,12 @@
     <title>Add Category</title>
 </head>
 <body>
+<div th:include="fragment/header::headerFragment"></div>
+
 <form action="/categories/add" method="post">
     <input type="text" name="name">
     <input type="submit" value="create">
 </form>
+<div th:include="fragment/header::footerFragment"></div>
 </body>
 </html>

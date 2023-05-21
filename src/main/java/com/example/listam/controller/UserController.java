@@ -41,4 +41,8 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/admin")
+    public String adminPage(){
+        return "admin";
+    }
 }

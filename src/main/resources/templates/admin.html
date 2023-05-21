@@ -2,14 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin Page</title>
 </head>
 <body>
+<h2>Admin page</h2>
 <div th:include="fragment/header::headerFragment"></div>
 
 <a href="/categories"> Categories Page</a> <br>
 <a href="/items"> Items Page</a>
 <a href="/user/register" th:if="${user == null}">Register</a>
 <a href="/customLogin" th:if="${user == null}">Login</a>
+<div th:include="fragment/header::footerFragment"></div>
+
 </body>
 </html>

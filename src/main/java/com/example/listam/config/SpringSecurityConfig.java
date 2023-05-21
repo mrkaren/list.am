@@ -24,11 +24,21 @@ public class SpringSecurityConfig {
         httpSecurity.csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET,"/").permitAll()
+//                .requestMatchers(HttpMethod.GET,"/customLogin").permitAll()
                 .requestMatchers("/user/register").permitAll()
-                .requestMatchers("/categories/remove").hasAuthority("ADMIN")
+                .requestMatchers("/categories/**").hasAnyAuthority("ADMIN", "USER")
+                .requestMatchers("/user/admin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .loginPage("/customLogin")
+                .defaultSuccessUrl("/customSuccessLogin")
+                .loginProcessingUrl("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
+                .permitAll();
 
         return httpSecurity.build();
     }

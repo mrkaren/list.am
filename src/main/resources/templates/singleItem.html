@@ -5,6 +5,8 @@
     <title>Single Item</title>
 </head>
 <body>
+<div th:include="fragment/header::headerFragment"></div>
+
 <a href="/items">Back</a>
 <h2 th:text="${item.title}"></h2>
 <img th:if="${item.getImgName() != null}" th:src="@{/getImage(imageName=${item.getImgName()})}" width="400"/>

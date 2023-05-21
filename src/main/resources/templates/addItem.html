@@ -5,6 +5,8 @@
     <title>Add Item</title>
 </head>
 <body>
+<div th:include="fragment/header::headerFragment"></div>
+
 <form action="/items/add" method="post" enctype="multipart/form-data">
     <input type="text" name="title"><br>
     <textarea name="description"></textarea>
@@ -15,5 +17,7 @@
     <input type="file" name="image">
     <input type="submit" value="create">
 </form>
+<div th:include="fragment/header::footerFragment"></div>
+
 </body>
 </html>

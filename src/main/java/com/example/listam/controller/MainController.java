@@ -1,5 +1,7 @@
 package com.example.listam.controller;
 
+import com.example.listam.entity.User;
+import com.example.listam.entity.UserType;
 import com.example.listam.security.CurrentUser;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,12 +25,26 @@ public class MainController {
     private String imageUploadPath;
 
     @GetMapping("/")
-    public String main(ModelMap modelMap,
-                       @AuthenticationPrincipal CurrentUser currentUser) {
-        if (currentUser != null) {
-            modelMap.addAttribute("user", currentUser.getUser());
-        }
+    public String main() {
         return "index";
+    }
+
+    @GetMapping("/customLogin")
+    public String customLogin() {
+        return "customLoginPage";
+    }
+
+    @GetMapping("/customSuccessLogin")
+    public String customSuccessLogin(@AuthenticationPrincipal CurrentUser currentUser) {
+        if (currentUser != null) {
+            User user = currentUser.getUser();
+            if(user.getUserType() == UserType.ADMIN){
+                return "redirect:/user/admin";
+            }else if(user.getUserType() == UserType.USER){
+                return "redirect:/";
+            }
+        }
+        return "redirect:/";
     }
 
     @GetMapping(value = "/getImage",

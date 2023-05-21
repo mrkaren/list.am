@@ -1,7 +1,6 @@
 package com.example.listam.security;
 
 import com.example.listam.entity.User;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 
