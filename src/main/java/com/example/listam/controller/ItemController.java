@@ -34,6 +34,7 @@ public class ItemController {
     private final CategoryRepository categoryRepository;
 
 
+
     @GetMapping
     public String itemsPage(ModelMap modelMap,
                             @AuthenticationPrincipal CurrentUser currentUser) {
