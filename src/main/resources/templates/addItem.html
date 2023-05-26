@@ -14,7 +14,11 @@
         <option th:each="category: ${categories}"
         th:text="${category.name}" th:value="${category.id}"></option>
     </select> <br>
-    <input type="file" name="image">
+    <input type="file" name="image"><br>
+    <div th:each="tag, status: ${hashtags}" >
+       <span th:text="${tag.name}"></span>
+        <input type="checkbox" th:name="hashtagList[__${status.index}__].id" th:value="${tag.id}">
+    </div>
     <input type="submit" value="create">
 </form>
 <div th:include="fragment/header::footerFragment"></div>

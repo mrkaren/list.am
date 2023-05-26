@@ -3,6 +3,7 @@ package com.example.listam.service.impl;
 import com.example.listam.entity.Item;
 import com.example.listam.entity.User;
 import com.example.listam.entity.UserType;
+import com.example.listam.repository.HashtagRepository;
 import com.example.listam.repository.ItemRepository;
 import com.example.listam.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
+//    private final HashtagRepository hashtagRepository;
     @Value("${listam.upload.image.path}")
     private String imageUploadPath;
 
@@ -41,6 +43,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void addItem(User currentUser, MultipartFile multipartFile, Item item) throws IOException {
+
         if (multipartFile != null && !multipartFile.isEmpty()) {
             String fileName = System.nanoTime() + "_" + multipartFile.getOriginalFilename();
             File file = new File(imageUploadPath + fileName);
@@ -48,6 +51,16 @@ public class ItemServiceImpl implements ItemService {
             item.setImgName(fileName);
         }
         item.setUser(currentUser);
+//        if(tags != null && !tags.isEmpty()){
+//            List<Hashtag> hashtags = new ArrayList<>();
+//            for (Integer tagId : tags) {
+//                Optional<Hashtag> byId = hashtagRepository.findById(tagId);
+//                if(byId.isPresent()){
+//                    hashtags.add(byId.get());
+//                }
+//            }
+//            item.setHashtagList(hashtags);
+//        }
         itemRepository.save(item);
     }
 

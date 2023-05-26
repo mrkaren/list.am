@@ -11,8 +11,10 @@
 <h2 th:text="${item.title}"></h2>
 <img th:if="${item.getImgName() != null}" th:src="@{/getImage(imageName=${item.getImgName()})}" width="400"/>
 <p th:text="${item.description}"></p>
-<span th:if="${item.category != null}" th:text="${item.category.name}"></span>
-
+category:<span th:if="${item.category != null}" th:text="${item.category.name}"></span><br>
+tags:
+<span th:each="tag:${item.hashtagList}" th:text="'#'+${tag.name}"></span><br>
+comments:
 <form action="/items/comment/add" method="post">
     <input type="hidden" name="item.id" th:value="${item.id}"/>
     <textarea name="commentText"></textarea>
