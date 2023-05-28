@@ -5,6 +5,7 @@ import com.example.listam.entity.Comment;
 import com.example.listam.entity.Item;
 import com.example.listam.repository.CategoryRepository;
 import com.example.listam.repository.CommentRepository;
+import com.example.listam.repository.HashtagRepository;
 import com.example.listam.security.CurrentUser;
 import com.example.listam.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class ItemController {
     private final ItemService itemService;
     private final CommentRepository commentRepository;
     private final CategoryRepository categoryRepository;
-
+    private final HashtagRepository hashtagRepository;
 
 
     @GetMapping
@@ -62,6 +63,7 @@ public class ItemController {
     public String itemsAddPage(ModelMap modelMap) {
         List<Category> all = categoryRepository.findAll();
         modelMap.addAttribute("categories", all);
+        modelMap.addAttribute("hashtags", hashtagRepository.findAll());
         return "addItem";
     }
 
