@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
+<th:block th:fragment="importFragment">
+    <link rel="stylesheet" type="text/css" href="/vendor/slick/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="/vendor/slick/slick-theme.min.css" />
+
+    <link href="/vendor/icons/icofont.min.css" rel="stylesheet" type="text/css">
+
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/style.css" rel="stylesheet">
+
+    <link href="/vendor/sidebar/demo.css" rel="stylesheet">
+</th:block>
+
 <div th:fragment="headerFragment">
     <div th:if="${currentUser != null}">Welcome <b th:text="${currentUser.name}"></b> <br>
         <a href="/logout"> Logout</a>
