@@ -8,6 +8,7 @@ import com.example.listam.repository.ItemRepository;
 import com.example.listam.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
 public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
+
 //    private final HashtagRepository hashtagRepository;
     @Value("${listam.upload.image.path}")
     private String imageUploadPath;

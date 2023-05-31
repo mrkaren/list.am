@@ -14,13 +14,13 @@
 <body>
 <div th:include="fragment/header::headerFragment"></div>
 
-<a href="/categories"> Categories Page</a> <br>
+<a href="/categories" th:text="#{index.categories.page}"></a> <br>
 <a href="/items"> Items Page</a>
-<a href="/user/register" th:if="${user == null}">Register</a>
-<a href="/customLogin" th:if="${user == null}">Login</a>
+<a href="/user/register" th:if="${user == null}" th:text="#{index.registration}"></a>
+<a href="/customLogin" th:if="${user == null}" th:text="#{index.login}"></a>
 </body>
 <script>
-    $(document).ready(function (){
+    $(document).ready(function () {
         let aTags = $("a");
         aTags.addClass("hrefs");
         // for (let aTag of aTags) {

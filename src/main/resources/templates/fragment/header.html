@@ -15,9 +15,15 @@
 </th:block>
 
 <div th:fragment="headerFragment">
+    <div>
+        <a href="?lang=hy">Հայերեն</a>
+        <a href="?lang=ru">Русский</a>
+        <a href="?lang=en">English</a>
+    </div>
     <div th:if="${currentUser != null}">Welcome <b th:text="${currentUser.name}"></b> <br>
         <a href="/logout"> Logout</a>
     </div>
+
 </div>
 
 <div th:fragment="footerFragment">
