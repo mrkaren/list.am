@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Controller
@@ -38,7 +39,8 @@ public class ItemController {
 
     @GetMapping
     public String itemsPage(ModelMap modelMap,
-                            @AuthenticationPrincipal CurrentUser currentUser) {
+                            @AuthenticationPrincipal CurrentUser currentUser,
+                            Locale locale) {
         modelMap.addAttribute("items", itemService.findItemsByUser(currentUser.getUser()));
         modelMap.addAttribute("categories", categoryRepository.findAll());
         return "items";
